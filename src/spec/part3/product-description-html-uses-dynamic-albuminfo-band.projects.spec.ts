@@ -99,8 +99,10 @@ describe('ProductDescription', () => {
     }
     if (htmlString != "") {
       const parser = new DOMParser();
+      console.log("Parsing");
       const htmlDoc = parser.parseFromString(htmlString, 'text/xml');
       const re = /{{\s*albumInfo\?\.artist\s*}}/
+      console.log(htmlDoc);
       since('We\'d like you to query the albumInfo property directly for the artist name, and we\'re not seeing that you\'re doing that.').expect(htmlDoc.querySelector('.band-name').textContent.match(re)).toEqual(jasmine.any(Array));  
     } else {
       since('We\'d like you to query the albumInfo property directly for the artist name, and we\'re not seeing that you\'re doing that.').expect(0).toBe(1);
